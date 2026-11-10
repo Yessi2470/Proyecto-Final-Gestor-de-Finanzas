@@ -32,6 +32,7 @@ formulario.addEventListener("submit", function (event) {
         monto,
         categoria
     )
+    Transaccion.guardar()
 
     mostrarTransaccion(nuevaTransaccion)
     actualizarBalance()
@@ -41,10 +42,11 @@ formulario.addEventListener("submit", function (event) {
 })
 
 function mostrarTransaccion(transaccion) {
-    const fila = document.createElement("tr");
+    const fila = document.createElement("tr") 
+    fila.className = "hover:bg-gray-50"
 
 
-    const colorMonto = transaccion.tipo === "gasto" ? "red" : "green"
+    const colorMonto = transaccion.tipo === "egreso" ? "red" : "green"
 
     fila.innerHTML = `
         <td>${transaccion.tipo}</td>
@@ -52,9 +54,9 @@ function mostrarTransaccion(transaccion) {
         <td style="color: ${colorMonto}">$${Number(transaccion.monto).toFixed(2)}</td>
         <td>${transaccion.categoria}</td>
         <td>
-            <button type="button" class="btn-eliminar">
-                Eliminar
-            </button>
+          <button type="button" class="btn-eliminar bg-red-600 text-white px-3 py-1 rounded-md hover:bg-red-700">
+    Eliminar
+</button>
         </td>
     `
 
@@ -67,7 +69,7 @@ function mostrarTransaccion(transaccion) {
         actualizarResumen()
     })
 
-    tablaTransacciones.appendChild(fila);
+    tablaTransacciones.appendChild(fila)
 }
 
 function actualizarBalance() {

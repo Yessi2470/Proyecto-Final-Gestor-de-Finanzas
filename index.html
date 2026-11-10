@@ -1,106 +1,135 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./output.css" rel="stylesheet">
     <title>Gestor de Finanzas Personales</title>
 </head>
 
-<body>
+<body class="bg-gray-100 text-gray-800">
 
-    <header>
-        <h1>Gestor de Finanzas Personales</h1>
-        <p>Controla tus finanzas de manera sencilla y eficiente.</p>
+    <header class="bg-white border-b border-gray-200 px-6 py-5">
+        <h1 class="text-2xl font-semibold">Gestor de Finanzas Personales</h1>
+        <p class="mt-1 text-sm text-gray-600">
+            Controlá tus ingresos y gastos de manera sencilla.
+        </p>
     </header>
 
-    <main>
+    <main class="max-w-6xl mx-auto p-6">
 
-        <section>
+      
+        <section class="bg-white p-6 rounded-lg shadow-sm mb-6">
 
-            <h2>Historial de Transacciones</h2>
+            <h2 class="text-xl font-semibold mb-4">Registrar transacción</h2>
 
-            <form id="formTransaccion">
+            <form id="formTransaccion" class="grid grid-cols-1 md:grid-cols-2 gap-4">
 
-                <label for="descripcion">Descripción:</label>
-                <input type="text" id="descripcion" name="descripcion" required>
+                <div class="flex flex-col gap-1">
+                    <label for="descripcion" class="text-sm font-medium">Descripción</label>
+                    <input type="text" id="descripcion" name="descripcion" required
+                        class="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
 
-                <label for="monto">Monto:</label>
-                <input type="number" id="monto" min="0.01" step="0.01" required>
+                <div class="flex flex-col gap-1">
+                    <label for="monto" class="text-sm font-medium">Monto</label>
+                    <input type="number" id="monto" name="monto" min="0.01" step="0.01" required
+                        class="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
 
-                <label for="tipo">Tipo de movimiento:</label>
-                <select id="tipo" name="tipo" required>
-                    <option value="">Seleccione un tipo</option>
-                    <option value="ingreso">Ingreso</option>
-                    <option value="egreso">Egreso</option>
-                </select>
+                <div class="flex flex-col gap-1">
+                    <label for="tipo" class="text-sm font-medium">Tipo de movimiento</label>
+                    <select id="tipo" name="tipo" required
+                        class="border border-gray-300 rounded-md px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="">Seleccione un tipo</option>
+                        <option value="ingreso">Ingreso</option>
+                        <option value="egreso">Egreso</option>
+                    </select>
+                </div>
 
-                <label for="categoria">Categoría:</label>
-                <select id="categoria" name="categoria" required>
-                    <option value="">Seleccione una categoría</option>
-                    <option value="Sueldo">Sueldo</option>
-                    <option value="Comida">Comida</option>
-                    <option value="Transporte">Transporte</option>
-                    <option value="Servicios">Servicios</option>
-                    <option value="Otros">Otros</option>
-                </select>
+                <div class="flex flex-col gap-1">
+                    <label for="categoria" class="text-sm font-medium">Categoría</label>
+                    <select id="categoria" name="categoria" required
+                        class="border border-gray-300 rounded-md px-3 py-2 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="">Seleccione una categoría</option>
+                        <option value="Sueldo">Sueldo</option>
+                        <option value="Comida">Comida</option>
+                        <option value="Transporte">Transporte</option>
+                        <option value="Servicios">Servicios</option>
+                        <option value="Otros">Otros</option>
+                    </select>
+                </div>
 
-                <button type="submit"> Registrar Transacción</button>
-
+                <div class="md:col-span-2">
+                    <button type="submit"
+                        class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
+                        Registrar transacción
+                    </button>
+                </div>
 
             </form>
 
+        </section>
+
+      
+        <section class="mb-6">
+
+            <h2 class="text-xl font-semibold mb-4">Resumen de finanzas</h2>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+
+                <article class="bg-white p-5 rounded-lg border border-gray-200">
+                    <h3 class="text-sm text-gray-600">Ingresos totales</h3>
+                    <p id="totalIngresos" class="text-2xl font-semibold text-green-700 mt-2">$0</p>
+                </article>
+
+                <article class="bg-white p-5 rounded-lg border border-gray-200">
+                    <h3 class="text-sm text-gray-600">Gastos totales</h3>
+                    <p id="totalGastos" class="text-2xl font-semibold text-red-600 mt-2">$0</p>
+                </article>
+
+                <article class="bg-white p-5 rounded-lg border border-gray-200">
+                    <h3 class="text-sm text-gray-600">Balance neto</h3>
+                    <p id="balanceNeto" class="text-2xl font-semibold mt-2">$0</p>
+                </article>
+
+            </div>
 
         </section>
 
-        <section>
-            <h2>Resumen de finanzas</h2>
+        
+        <section class="bg-white p-6 rounded-lg shadow-sm mb-6">
 
-            <article>
-                <h3>Ingresos totales </h3>
-                <p id="totalIngresos">$0</p>
+            <h2 class="text-xl font-semibold mb-4">Historial de transacciones</h2>
 
-            </article>
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm text-left">
+                    <thead class="bg-gray-100 text-gray-700">
+                        <tr>
+                            <th class="px-4 py-3">Tipo</th>
+                            <th class="px-4 py-3">Descripción</th>
+                            <th class="px-4 py-3">Monto</th>
+                            <th class="px-4 py-3">Categoría</th>
+                            <th class="px-4 py-3">Acciones</th>
+                        </tr>
+                    </thead>
 
-            <article>
-                <h3>Gastos totales</h3>
-                <p id="totalGastos">$0</p>
-
-            </article>
-
-            <article>
-                <h3>Balance neto</h3>
-                <p id="balanceNeto">$0</p>
-
-            </article>
-
+                    <tbody id="tablaTransacciones" class="divide-y divide-gray-200">
+                    </tbody>
+                </table>
+            </div>
 
         </section>
 
-        <section>
-            <h2>Historial de transacciones</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Tipo</th>
-                        <th>Descripción</th>
-                        <th>Monto</th>
-                        <th>Categoría</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tbody id="tablaTransacciones">
+        
+        <section class="bg-white p-6 rounded-lg shadow-sm">
 
-                </tbody>
+            <h2 class="text-xl font-semibold mb-4">Resumen por categorías</h2>
 
-            </table>
-        </section>
-
-        <section>
-            <h2> Resumen por categorías</h2>
-
-            <ul id="resumenCategorias">
+            <ul id="resumenCategorias" class="space-y-2 text-sm text-gray-700">
             </ul>
+
         </section>
 
     </main>

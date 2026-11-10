@@ -10,7 +10,7 @@ export class Transaccion {
         this.categoria = categoria
 
         Transaccion.historial.push(this)
-        Transaccion.guardar()
+       
     }
     static obtenerHistorial() {
         return Transaccion.historial
@@ -39,17 +39,24 @@ export class Transaccion {
             Transaccion.idincremento = maxid + 1
         }
     }
-    static totalingresos() {
+    static totalIngresos() {
         return Transaccion.historial
-            .filter((t) => t.tipo === "gastos")
-            .reduce((acumulado, t) => acumulado + Number(t, monto), 0)
+            .filter((t) => t.tipo === "ingreso")
+            .reduce((acumulado, t) => acumulado + t.monto, 0)
     }
-    static balenceNeto() {
-        return transaccion.totalingresos() - transaccion.totalGastos()
+
+    static totalGastos() {
+    return Transaccion.historial
+        .filter((t) => t.tipo === "egreso")
+        .reduce((acumulado, t) => acumulado + t.monto, 0)
+}
+
+    static balanceNeto() {
+        return Transaccion.totalIngresos() - Transaccion.totalGastos()
     }
     static resumenPorCategoria() {
         const resumen = {}
-        transaccion.historial.forEach((t) => {
+        Transaccion.historial.forEach((t) => {
             if (!resumen[t.categoria]) {
                 resumen[t.categoria] = 0
             }
