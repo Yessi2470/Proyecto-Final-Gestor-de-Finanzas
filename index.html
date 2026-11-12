@@ -19,12 +19,17 @@
 
     <main class="max-w-6xl mx-auto p-6">
 
-      
         <section class="bg-white p-6 rounded-lg shadow-sm mb-6">
 
             <h2 class="text-xl font-semibold mb-4">Registrar transacción</h2>
 
             <form id="formTransaccion" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+                <div class="flex flex-col gap-1">
+                    <label for="fecha" class="text-sm font-medium">Fecha</label>
+                    <input type="date" id="fecha" name="fecha" required
+                        class="border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
 
                 <div class="flex flex-col gap-1">
                     <label for="descripcion" class="text-sm font-medium">Descripción</label>
@@ -62,8 +67,7 @@
                 </div>
 
                 <div class="md:col-span-2">
-                    <button type="submit"
-                        class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
+                    <button type="submit" class="bg-blue-600 text-white px-5 py-2 rounded-md hover:bg-blue-700 transition-colors shadow-sm">
                         Registrar transacción
                     </button>
                 </div>
@@ -72,7 +76,6 @@
 
         </section>
 
-      
         <section class="mb-6">
 
             <h2 class="text-xl font-semibold mb-4">Resumen de finanzas</h2>
@@ -98,7 +101,6 @@
 
         </section>
 
-        
         <section class="bg-white p-6 rounded-lg shadow-sm mb-6">
 
             <h2 class="text-xl font-semibold mb-4">Historial de transacciones</h2>
@@ -107,6 +109,7 @@
                 <table class="w-full text-sm text-left">
                     <thead class="bg-gray-100 text-gray-700">
                         <tr>
+                            <th class="px-4 py-3">Fecha</th>
                             <th class="px-4 py-3">Tipo</th>
                             <th class="px-4 py-3">Descripción</th>
                             <th class="px-4 py-3">Monto</th>
@@ -115,27 +118,37 @@
                         </tr>
                     </thead>
 
-                    <tbody id="tablaTransacciones" class="divide-y divide-gray-200">
+                    <tbody id="tablaTransacciones" class="divide-y divide-gray-300">
                     </tbody>
                 </table>
             </div>
 
         </section>
 
-        
-        <section class="bg-white p-6 rounded-lg shadow-sm">
+        <section class="bg-white p-6 rounded-lg shadow-sm mb-6">
 
             <h2 class="text-xl font-semibold mb-4">Resumen por categorías</h2>
 
-            <ul id="resumenCategorias" class="space-y-2 text-sm text-gray-700">
-            </ul>
+            <div class="w-full">
+                <canvas id="graficoCategorias"></canvas>
+            </div>
+
+        </section>
+
+        <section class="bg-white p-6 rounded-lg shadow-sm">
+
+            <h2 class="text-xl font-semibold mb-4">Evolución temporal de las finanzas</h2>
+
+            <div class="w-full">
+                <canvas id="graficoFinanzas"></canvas>
+            </div>
 
         </section>
 
     </main>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script type="module" src="index.js"></script>
 
 </body>
-
 </html>
